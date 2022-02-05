@@ -143,3 +143,20 @@ class Game():
                 if row[i] != 0:
                     row[left_available_pos] = row[i]
                     left_available_pos += 1
+
+    def __merge_cells(self) -> None:
+        '''Merge cells in left direction'''
+
+        for row in self.playboard:
+            for i in range(1, len(row)):
+                # merge and shift left
+                # This code works as follows:
+                # E.g let row be 2 2 2 0
+                # after 1st iteration: 4 0 2 0 (because of row[i] == row[i-1])
+                # after 2nd : 4 2 0 0 (because of row[i-1] == 0)
+                # after 3rd : 4 2 0 0
+                if row[i] == 0:
+                    continue
+                elif row[i] == row[i-1] or row[i-1] == 0:
+                    row[i-1] += row[i]
+                    row[i] = 0
