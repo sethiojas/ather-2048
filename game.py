@@ -172,3 +172,16 @@ class Game():
         
         self.playboard = temp_playboard
 
+    def __transform_playboard(self):
+        '''Apply matrix transformation to playboard'''
+        temp_playboard = list()
+
+        for col_index in range(len(self.playboard[0])):
+            temp_row = list()
+            # read all the tiles in column and add them to temp_row
+            for row_index in range(len(self.playboard)):
+                temp_row.append(self.playboard[row_index][col_index])
+            # add temp_row to temp_playground
+            temp_playboard.append(temp_row)
+        # update the playground
+        self.playboard = temp_playboard
