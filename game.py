@@ -132,3 +132,14 @@ class Game():
 
         return (True, 'Lost')
 
+    def __move_left(self) -> None:
+        '''Move every tile to its leftmost mostion'''
+
+        for row in self.playboard:
+            # track leftmost position which is currently
+            # available
+            left_available_pos = 0
+            for i in range(len(row)):
+                if row[i] != 0:
+                    row[left_available_pos] = row[i]
+                    left_available_pos += 1
