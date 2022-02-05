@@ -39,9 +39,6 @@ class Game():
         for i in range(Game.board_size):
             self.playboard.append([0] * Game.board_size)
 
-        # add a new tile to the playboard
-        self.__add_new_tile()
-
     # double underscore '_ _' at start indicates it's private
     def __add_new_tile(self) -> None:
         '''
@@ -68,7 +65,8 @@ class Game():
 
     def show_playboard(self) -> None:
         '''Display playboard on STDOUT'''
-
+        # add a new random tile
+        self.__add_new_tile()
         # go through each row and display it
         for row in self.playboard:
             print(row)
