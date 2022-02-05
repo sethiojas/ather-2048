@@ -30,7 +30,7 @@ class Game():
     '''
     
     def __init__(self) -> None:
-        '''Initialize an empty playboard'''
+        '''Set the playboard for a new game'''
         # make a board_size x board_size empty playboard.
         # [0] * number results in a list whose length is
         # equal to number and every entry in that list is
@@ -39,6 +39,8 @@ class Game():
         for i in range(Game.board_size):
             self.playboard.append([0] * Game.board_size)
 
+        # add a new tile to the playboard
+        self.__add_new_tile()
 
     # double underscore '_ _' at start indicates it's private
     def __add_new_tile(self) -> None:
