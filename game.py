@@ -181,7 +181,7 @@ class Game():
             # read all the tiles in column and add them to temp_row
             for row_index in range(len(self.playboard)):
                 temp_row.append(self.playboard[row_index][col_index])
-            # add temp_row to temp_playground
+            # add temp_row to temp_playboard
             temp_playboard.append(temp_row)
-        # update the playground
+        # update the playboard
         self.playboard = temp_playboard
