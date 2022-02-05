@@ -50,7 +50,7 @@ class Game():
         '''
 
         # randomly select either 2 or 4
-        tile = random.choice({2,4})
+        tile = random.choice((2,4))
 
         # select a random cell
         row_index = random.randint(0, 3)
