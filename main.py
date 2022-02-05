@@ -29,5 +29,14 @@ class Game():
     4 - To move tiles Down.
     '''
     
-import random # used to randomize appearance of new tiles and tile value (i.e 2 or 4)
+    def __init__(self) -> None:
+        '''Initialize an empty playboard'''
+        # make a board_size x board_size empty playboard.
+        # [0] * number results in a list whose length is
+        # equal to number and every entry in that list is
+        # 0.
+        self.playboard = list()
+        for i in range(Game.board_size):
+            self.playboard.append([0] * Game.board_size)
+
 
