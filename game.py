@@ -206,3 +206,17 @@ class Game():
         # negate the first revarsal
         self.__reverse_playboard_rows()
 
+    def up_move(self) -> None:
+        '''Execute a up move on playboard'''
+        # up move is same as doing left
+        # move after applying matrix
+        # transformation to playboard
+
+        # transform the playboard
+        self.__transform_playboard()
+        # execute left move
+        self.left_move()
+        # transfor the playboard again to negate
+        # previous transformation
+        self.__transform_playboard()
+    
