@@ -185,3 +185,11 @@ class Game():
             temp_playboard.append(temp_row)
         # update the playboard
         self.playboard = temp_playboard
+
+    def left_move(self) -> None:
+        '''Execute a left move on playboard'''
+        # move all the tiles left
+        self.__move_left()
+        # combine mergable tiles
+        self.__merge_cells()
+
