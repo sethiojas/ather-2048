@@ -193,3 +193,16 @@ class Game():
         # combine mergable tiles
         self.__merge_cells()
 
+    def right_move(self) -> None:
+        '''Execute a right move on playboard'''
+        # doing a right move is same as doing
+        # left move on reversed rows
+
+        # reverse the rows
+        self.__reverse_playboard_rows()
+        # do a left move
+        self.left_move()
+        # reverse the rows again to get
+        # negate the first revarsal
+        self.__reverse_playboard_rows()
+
