@@ -166,6 +166,8 @@ class Game():
         
         temp_playboard = list()
         for row in self.playboard:
+            # list[::-1] creates a slice of whole list in reverse
+            # order
             temp_playboard.append(row[::-1])
         
         self.playboard = temp_playboard
