@@ -241,7 +241,9 @@ class Game():
         # left_move, we only need to track
         # playboard change in this method and not
         # the others.
-        prev_playboard = self.playboard
+        prev_playboard = list()
+        for row in self.playboard:
+            prev_playboard.append(row[:])
 
         # move all the tiles left
         self.__move_left()
