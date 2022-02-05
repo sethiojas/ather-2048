@@ -150,19 +150,62 @@ class Game():
     def __merge_cells(self) -> None:
         '''Merge cells in left direction'''
 
+        # create a temporary playboard
+        temp_playboard = list()
+
+        # go through each row in playboard
         for row in self.playboard:
+            # create a temporary row
+            temp_row = list()
+            # add the first tile of row to
+            # temporary row
+            temp_row.append(row[0])
+            # to check if merge happend in
+            # previous iteration
+            merged_in_prev_iter = False
+
+            # go through remaining elements of row
+            # i.e. from index 1 to index Game.board_size - 1
             for i in range(1, len(row)):
-                # merge and shift left
-                # This code works as follows:
-                # E.g let row be 2 2 2 0
-                # after 1st iteration: 4 0 2 0 (because of row[i] == row[i-1])
-                # after 2nd : 4 2 0 0 (because of row[i-1] == 0)
-                # after 3rd : 4 2 0 0
-                if row[i] == 0:
-                    continue
-                elif row[i] == row[i-1] or row[i-1] == 0:
-                    row[i-1] += row[i]
-                    row[i] = 0
+                # if the last element of temporary row
+                # matches the current tile
+                if temp_row[-1] == row[i]:
+                    # if we merged 2 tiles in previous
+                    # iteration
+                    if merged_in_prev_iter:
+                        # make merged_in_prev_iter False
+                        # and add current tile at end of
+                        # temporary row
+                        merged_in_prev_iter = False
+                        temp_row.append(row[i])
+                    # if we did not merge 2 tiles in previous
+                    # iteration
+                    else:
+                        # then merge current tile with the
+                        # last tile of temporary row and
+                        # make merged_in_prev_iter True
+                        merged_in_prev_iter = True
+                        tile = temp_row.pop() + row[i]
+                        temp_row.append(tile)
+                # if the last element of temporary row
+                # does not match the current tile
+                else:
+                    # add current element to end of temporary row
+                    # and make merged_in_prev_iter False
+                    temp_row.append(row[i])
+                    merged_in_prev_iter = False
+            
+            # append zeros at the end of temporary row
+            # till its length does not equal the board_size
+            while len(temp_row) != Game.board_size:
+                temp_row.append(0)
+            
+            # add this temporary row to temporary
+            # playboard 
+            temp_playboard.append(temp_row)
+        
+        # set playboard equal to temporary playboard
+        self.playboard = temp_playboard
 
     def __reverse_playboard_rows(self) -> None:
         '''Reverse the rows playboard'''
