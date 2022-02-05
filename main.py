@@ -40,3 +40,27 @@ class Game():
             self.playboard.append([0] * Game.board_size)
 
 
+    # double underscore '_ _' at start indicates it's private
+    def __add_new_tile(self) -> None:
+        '''
+        Add a tile of value 2 or 4 to any random empty location
+        on the playboard.
+        '''
+
+        # randomly select either 2 or 4
+        tile = random.choice({2,4})
+
+        # select a random cell
+        row_index = random.randint(0, 3)
+        col_index = random.randint(0, 3)
+
+        # if the randomly selected cell isn't empty
+        # keep selecting other cells till one of them
+        # is empty.
+        while self.playboard[row_index][col_index] != 0:
+            row_index = random.randint(0, 3)
+            col_index = random.randint(0, 3)
+        
+        # add the tile to randomly selected cell
+        self.playboard[row_index][col_index] = tile
+
