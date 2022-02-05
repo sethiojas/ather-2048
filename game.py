@@ -42,12 +42,20 @@ class Game():
         for i in range(Game.board_size):
             self.playboard.append([0] * Game.board_size)
 
+        # keeps track of change of board due to player's
+        # previous move
+        self.is_board_changed = True
+
     # double underscore '_ _' at start indicates it's private
     def __add_new_tile(self) -> None:
         '''
         Add a tile of value 2 or 4 to any random empty location
         on the playboard.
         '''
+        # If previous player moved didn't change the
+        # playboard, then do not add a new tile
+        if not self.is_board_changed:
+            return None
 
         # randomly select either 2 or 4
         tile = random.choice((2,4))
@@ -226,10 +234,25 @@ class Game():
 
     def left_move(self) -> None:
         '''Execute a left move on playboard'''
+        # Since all the other three moves namely
+        # right_move, up_move and down_move use
+        # left_move, we only need to track
+        # playboard change in this method and not
+        # the others.
+        prev_playboard = self.playboard
+
         # move all the tiles left
         self.__move_left()
         # combine mergable tiles
         self.__merge_cells()
+
+        # If the move did not result in a board change
+        # set is_board_changed to False else set it to
+        # True
+        if prev_playboard == self.playboard:
+            self.is_board_changed = False
+        else:
+            self.is_board_changed = True
 
     def right_move(self) -> None:
         '''Execute a right move on playboard'''
