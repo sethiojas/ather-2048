@@ -143,6 +143,8 @@ class Game():
             for i in range(len(row)):
                 if row[i] != 0:
                     row[left_available_pos] = row[i]
+                    if i != left_available_pos:
+                        row[i] = 0
                     left_available_pos += 1
 
     def __merge_cells(self) -> None:
