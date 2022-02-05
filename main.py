@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     # initialize Game object
     my_game = Game()
-    play_hint = "1-Left, 2-Right, 3-Up, 4-Down, 5-Exit."
+    play_hint = "1-Left, 2-Right, 3-Up, 4-Down, 5-Exit.: "
     
     # to track if game has ended
     game_end = (False, '')
