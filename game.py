@@ -168,27 +168,19 @@ class Game():
             # i.e. from index 1 to index Game.board_size - 1
             for i in range(1, len(row)):
                 # if the last element of temporary row
-                # matches the current tile
-                if temp_row[-1] == row[i]:
-                    # if we merged 2 tiles in previous
-                    # iteration
-                    if merged_in_prev_iter:
-                        # make merged_in_prev_iter False
-                        # and add current tile at end of
-                        # temporary row
-                        merged_in_prev_iter = False
-                        temp_row.append(row[i])
-                    # if we did not merge 2 tiles in previous
-                    # iteration
-                    else:
-                        # then merge current tile with the
-                        # last tile of temporary row and
-                        # make merged_in_prev_iter True
-                        merged_in_prev_iter = True
-                        tile = temp_row.pop() + row[i]
-                        temp_row.append(tile)
+                # matches the current tile and we didn't
+                # merge 2 tiles in previous iteration
+                if temp_row[-1] == row[i] and not merged_in_prev_iter:
+                    # merge the last element of temporary row
+                    # and current element and make merged_in_prev_iter
+                    # True
+                    merged_in_prev_iter = True
+                    tile = temp_row.pop() + row[i]
+                    temp_row.append(tile)
                 # if the last element of temporary row
-                # does not match the current tile
+                # does not match the current tile or if we
+                # performed a merge operation in previous
+                # iteration
                 else:
                     # add current element to end of temporary row
                     # and make merged_in_prev_iter False
