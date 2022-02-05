@@ -43,7 +43,9 @@ class Game():
             self.playboard.append([0] * Game.board_size)
 
         # keeps track of change of board due to player's
-        # previous move
+        # previous move.
+        # Initially it is set to true because we need to add
+        # a new tile at the start of the game.
         self.is_board_changed = True
 
     # double underscore '_ _' at start indicates it's private
