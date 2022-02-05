@@ -21,6 +21,8 @@ if __name__ == '__main__':
 
     # while game doesn't end continue playing
     while not game_end[0]:
+        # output a newline to STDOUT
+        print()
         # output the playboard
         my_game.show_playboard()
         # get player's move
