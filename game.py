@@ -66,3 +66,10 @@ class Game():
         # add the tile to randomly selected cell
         self.playboard[row_index][col_index] = tile
 
+    def show_playboard(self) -> None:
+        '''Display playboard on STDOUT'''
+
+        # go through each row and display it
+        for row in self.playboard:
+            print(row)
+
