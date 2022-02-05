@@ -170,7 +170,7 @@ class Game():
         
         self.playboard = temp_playboard
 
-    def __transform_playboard(self):
+    def __transform_playboard(self) -> None:
         '''Apply matrix transformation to playboard'''
         temp_playboard = list()
 
