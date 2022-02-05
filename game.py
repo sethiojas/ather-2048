@@ -160,3 +160,13 @@ class Game():
                 elif row[i] == row[i-1] or row[i-1] == 0:
                     row[i-1] += row[i]
                     row[i] = 0
+
+    def __reverse_playboard_rows(self) -> None:
+        '''Reverse the rows playboard'''
+        
+        temp_playboard = list()
+        for row in self.playboard:
+            temp_playboard.append(row[::-1])
+        
+        self.playboard = temp_playboard
+
