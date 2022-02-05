@@ -16,7 +16,10 @@
 #
 # 5. Repeat steps 1 - 4 till one of the cell reaches 2048
 
-import random # used to randomize appearance of new tiles and tile value (i.e 2 or 4)
+# used to randomize appearance of new tiles and tile value (i.e 2 or 4)
+import random
+# used for Type Annotation in has_game_ended method
+from typing import Tuple 
 
 class Game():
     board_size = 4
@@ -71,7 +74,7 @@ class Game():
         for row in self.playboard:
             print(row)
 
-    def has_game_ended(self) -> tuple(bool, str):
+    def has_game_ended(self) -> Tuple[bool, str]:
         '''
         Check if the game has ended, if so then decide if player has
         Won or Lost.
