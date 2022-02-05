@@ -220,3 +220,19 @@ class Game():
         # previous transformation
         self.__transform_playboard()
     
+    def down_move(self) -> None:
+        '''Execute a down move on playboard'''
+        # down move can be done by doing a left
+        # move on the transform of playboard
+        # with reversed rows
+
+        # transform playboard
+        self.__transform_playboard()
+        # reverse the rows of transformed playboard
+        self.__reverse_playboard_rows()
+        # execute a left move
+        self.left_move()
+        # negate the previous row reversal
+        self.__reverse_playboard_rows()
+        # negate the previous tranform operation
+        self.__transform_playboard()
