@@ -73,3 +73,62 @@ class Game():
         for row in self.playboard:
             print(row)
 
+    def has_game_ended(self) -> tuple(bool, str):
+        '''
+        Check if the game has ended, if so then decide if player has
+        Won or Lost.
+        Empty string is returned for win-loss verdict if game hasn't
+        ended.
+        '''
+        # to check for empty cells on playboard
+        is_any_cell_empty = False
+
+        # In each row
+        for row in self.playboard:
+            # check if Game.game_max_value is present
+            if Game.game_max_value in row:
+                # If present then game has ended and player has won
+                return (True, 'Won')
+            
+            # check for any empty cells side-by-side while
+            # checking for max value
+            if not is_any_cell_empty and 0 in row:
+                is_any_cell_empty = True
+
+        # if any of the cell of playboard is empty
+        # then game hasn't ended
+        if is_any_cell_empty:
+            return (False, '')
+
+        # If any of the adjacent cells have same values and
+        # hence can be merged, then game hasn't ended
+
+        # check for mergable values in (board_size-1) x (board_size-1)
+        # playboard
+        for row in range(0,Game.board_size - 1):
+            for col in range(0,Game.board_size - 1):
+                if (self.playboard[row][col] == self.playboard[row][col+1] or
+                    self.playboard[row][col] == self.playboard[row+1][col]):
+                    # mergable value found, game hasn't ended
+                    return(False, '')
+        
+        # check for mergable values in last column of playboard
+        for row in range(Game.board_size - 1):
+            if self.playboard[row][Game.game_max_value - 1] == self.playboard[row+1][Game.game_max_value]:
+                # mergable value found, game hasn't ended
+                return (False, '')
+        
+        # check for mergable values in last row of playboard
+        for col in range(Game.board_size - 1):
+            if self.playboard[Game.game_max_value - 1][col] == self.playboard[Game.game_max_value - 1][col+1]:
+                # mergable value found, game hasn't ended
+                return (False, '')
+
+        # the game has ended and player has lost if these conditions are met
+        # 1. playboard has no empty cells remaining
+        # 2. None of the adjacent cells can be merged
+        # 3. game_max_value is not present on the board in addition to
+        #    both of the above mentioned conditions
+
+        return (True, 'Lost')
+
