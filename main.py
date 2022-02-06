@@ -4,7 +4,7 @@ from game import Game
 # directly
 if __name__ == '__main__':
     # print game name as header
-    print("+"*5, 2048, "+"*5)
+    print("+"*5, Game.game_max_value, "+"*5)
     
     # print instrcutions to play the game
     print(Game.play_instructions)
